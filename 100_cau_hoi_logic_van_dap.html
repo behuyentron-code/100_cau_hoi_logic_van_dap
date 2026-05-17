@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>100 Câu Hỏi Logic - Web Nội Thất</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#f4f6f0;color:#2c2c2c;font-size:14px}
+.hdr{background:#2c3e22;color:white;padding:26px 40px 22px}
+.hdr h1{font-size:21px;font-weight:700;margin-bottom:6px}
+.hdr p{font-size:13px;opacity:.75}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);padding:4px 13px;border-radius:20px;font-size:11px;font-weight:600}
+.bar{background:white;padding:12px 40px;border-bottom:1px solid #e2e8d8;display:flex;gap:9px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:99}
+.bar input{padding:8px 13px;border:1px solid #d6ddc8;border-radius:8px;font-size:13px;width:210px;outline:none}
+.bar input:focus{border-color:#4e5c34}
+.fb{padding:5px 13px;border-radius:20px;border:1px solid #d6ddc8;background:white;color:#6b7280;font-size:12px;font-weight:600;cursor:pointer;transition:.15s}
+.fb.on{background:#2c3e22;border-color:#2c3e22;color:white}
+.cnt{margin-left:auto;font-size:12px;color:#9ca3af}
+.wrap{padding:22px 40px 60px;max-width:920px;margin:0 auto}
+.sec{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin:26px 0 9px;display:flex;align-items:center;gap:10px}
+.sec::after{content:'';flex:1;height:1px;background:#e2e8d8}
+.card{background:white;border:.5px solid #e2e8d8;border-radius:11px;margin-bottom:7px;overflow:hidden}
+.card:hover{box-shadow:0 2px 10px rgba(44,62,34,.07)}
+.head{display:flex;align-items:flex-start;gap:11px;padding:13px 15px;cursor:pointer}
+.head:hover{background:#fafbf8}
+.num{font-size:11px;font-weight:700;color:#9ca3af;min-width:22px;margin-top:1px}
+.txt{flex:1;font-size:13.5px;line-height:1.5;color:#2c2c2c}
+.txt code{background:#f0f3ea;color:#3a4f28;padding:1px 5px;border-radius:4px;font-size:12px;font-family:Consolas,monospace}
+.tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.t-session{background:#e3f2fd;color:#0d47a1}
+.t-java{background:#e8f5e9;color:#1b5e20}
+.t-js{background:#fff9c4;color:#795b00}
+.t-fetch{background:#f3e5f5;color:#4a148c}
+.t-trap{background:#fce4ec;color:#880e4f}
+.t-arch{background:#fbe9e7;color:#bf360c}
+.t-sec{background:#ffebee;color:#c62828}
+.t-mvc{background:#e8eaf6;color:#283593}
+.t-db{background:#e0f2f1;color:#004d40}
+.arr{font-size:12px;color:#9ca3af;transition:transform .2s;margin-top:3px;flex-shrink:0}
+.body{display:none;padding:0 15px 14px 48px;border-top:.5px solid #f0f3ea}
+.body.open{display:block}
+.body p{font-size:13px;color:#4b5563;line-height:1.75;margin-top:9px}
+.body code{background:#f0f3ea;color:#3a4f28;padding:1px 5px;border-radius:4px;font-size:12px;font-family:Consolas,monospace}
+.hint{margin-top:9px;padding:8px 12px;background:#f8f9fa;border-left:3px solid #d6ddc8;border-radius:0 6px 6px 0;font-size:12px;color:#6b7280;line-height:1.6}
+.gone{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>100 Câu Hỏi Vấn Đáp Logic — Web Nội Thất Decor Luxury</h1>
+  <p>Rút từ home_page.jsp · cart.jsp · product_detail.jsp · lienhe.jsp · Servlet · DAO · Model</p>
+  <div class="pills">
+    <span class="pill">Session &amp; Cookie</span>
+    <span class="pill">JSP &amp; Java</span>
+    <span class="pill">JavaScript / Fetch</span>
+    <span class="pill">MVC &amp; Servlet</span>
+    <span class="pill">Bảo mật</span>
+    <span class="pill">Database / SQL</span>
+    <span class="pill">Bẫy logic</span>
+  </div>
+</div>
+
+<div class="bar">
+  <input type="text" id="srch" placeholder="Tìm câu hỏi..." oninput="fil()">
+  <button class="fb on" onclick="st('all',this)">Tất cả</button>
+  <button class="fb" onclick="st('session',this)">Session</button>
+  <button class="fb" onclick="st('java',this)">JSP/Java</button>
+  <button class="fb" onclick="st('js',this)">JavaScript</button>
+  <button class="fb" onclick="st('fetch',this)">Fetch/AJAX</button>
+  <button class="fb" onclick="st('mvc',this)">MVC</button>
+  <button class="fb" onclick="st('sec',this)">Bảo mật</button>
+  <button class="fb" onclick="st('db',this)">Database</button>
+  <button class="fb" onclick="st('trap',this)">Bẫy</button>
+  <span class="cnt" id="cl">100 câu</span>
+</div>
+
+<div class="wrap" id="ql">
+
+<div class="sec">Phần 1 — Session &amp; Quản lý trạng thái</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">1</span>
+  <span class="txt">Session trong JSP là gì? Nó được tạo ra khi nào và lưu ở đâu (client hay server)?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Session là vùng nhớ trên <strong>server</strong> gắn với từng user riêng biệt, được nhận diện qua <code>JSESSIONID</code> cookie gửi về browser. Được tạo lần đầu khi gọi <code>request.getSession()</code> hoặc khi trang JSP đầu tiên được truy cập. Dữ liệu lưu server-side — client chỉ giữ ID.</p>
+  <div class="hint">Hỏi thêm: nếu user tắt cookie thì session sẽ thế nào? → URL rewriting (;jsessionid=xxx).</div></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">2</span>
+  <span class="txt">Code lấy <code>session.getAttribute("loginError")</code> rồi gọi <code>session.removeAttribute("loginError")</code> ngay lập tức — nếu không removeAttribute thì điều gì xảy ra?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Thông báo lỗi sẽ hiển thị mãi mỗi lần F5 lại trang — dù user chưa làm gì sai thêm. Pattern "read then remove" gọi là <strong>flash attribute</strong> — chỉ hiển thị một lần rồi biến mất. Đây là cách xử lý thông báo sau redirect đúng chuẩn.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">3</span>
+  <span class="txt">Giỏ hàng được lưu kiểu <code>Map&lt;Integer, Object[]&gt;</code> trong session. <code>Object[]</code> chứa gì? Tại sao không lưu trực tiếp số lượng vào một Map khác?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>Object[0]</code> là object <code>products</code>, <code>Object[1]</code> là <code>int</code> số lượng. Gộp cả 2 vào một entry cho phép duyệt giỏ hàng chỉ bằng 1 vòng lặp, lấy được cả thông tin sản phẩm lẫn số lượng cùng lúc. Nếu tách ra 2 Map phải lookup 2 lần.</p>
+  <div class="hint">Nhược điểm: Object[] không type-safe, phải cast thủ công, dễ ClassCastException. Nên dùng class CartItem(products, int qty) thay thế.</div></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">4</span>
+  <span class="txt">Tại sao giỏ hàng dùng <code>LinkedHashMap</code> thay vì <code>HashMap</code> thông thường?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>LinkedHashMap</code> duy trì thứ tự chèn (insertion order) — sản phẩm thêm vào trước hiển thị trước. <code>HashMap</code> không đảm bảo thứ tự — mỗi lần load giỏ hàng thứ tự sản phẩm có thể thay đổi ngẫu nhiên, gây trải nghiệm xấu.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">5</span>
+  <span class="txt">Code: <code>Map cart = (Map) session.getAttribute("cart"); if (cart == null) cart = new LinkedHashMap();</code> — tại sao cần kiểm tra null trước khi tạo mới?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Lần đầu user vào trang giỏ hàng chưa có gì trong session → <code>getAttribute</code> trả về <code>null</code>. Nếu không check null và dùng trực tiếp → <code>NullPointerException</code> khi gọi <code>cart.values()</code>. Tuy nhiên cart mới tạo này <strong>không được lưu lại vào session</strong> — thiếu <code>session.setAttribute("cart", cart)</code>.</p>
+  <div class="hint">Đây là bug tiềm ẩn: cart tạo local không được persist vào session.</div></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">6</span>
+  <span class="txt">Session timeout mặc định trong Tomcat là bao nhiêu phút? Nếu session hết hạn, giỏ hàng user bị sao? Cách khắc phục?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Mặc định 30 phút. Giỏ hàng mất hoàn toàn vì lưu trong session. Khắc phục: (1) Tăng timeout trong web.xml: <code>&lt;session-timeout&gt;60&lt;/session-timeout&gt;</code>. (2) Lưu giỏ hàng vào database khi user đăng nhập, restore khi login lại. (3) Dùng localStorage để cache client-side.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">7</span>
+  <span class="txt"><code>session.getAttribute("cartCount")</code> trả về kiểu gì? Tại sao JSP viết <code>session.getAttribute("cartCount") != null ? session.getAttribute("cartCount") : 0</code>?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Trả về <code>Object</code> (thực chất là <code>Integer</code>). Nếu user chưa thêm gì vào giỏ, <code>cartCount</code> chưa được set → null. Toán tử ternary ngăn hiển thị "null" ra màn hình, thay bằng 0. JSP sẽ gọi <code>.toString()</code> tự động khi render.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">8</span>
+  <span class="txt">User A đăng nhập, thêm vào giỏ 3 sản phẩm, rồi <strong>đăng xuất</strong>. User B đăng nhập cùng máy. User B có thấy giỏ hàng của user A không? Tại sao?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Phụ thuộc vào code logout. Nếu logout chỉ xóa <code>user</code> attribute mà không <code>session.invalidate()</code>, session cũ vẫn còn và cart vẫn còn → User B sẽ thấy giỏ hàng của A. Đúng ra phải gọi <code>session.invalidate()</code> khi logout để hủy toàn bộ session.</p>
+  <div class="hint">Đây là lỗ hổng bảo mật thực tế — giảng viên rất hay hỏi về vấn đề này.</div></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">9</span>
+  <span class="txt">Khác nhau giữa <code>session.setAttribute()</code> và <code>request.setAttribute()</code> — cái nào tồn tại lâu hơn?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>request.setAttribute()</code>: chỉ tồn tại trong 1 request-response cycle (một lần forward). Khi redirect hoặc request mới → mất. <code>session.setAttribute()</code>: tồn tại xuyên suốt nhiều request cho đến khi session timeout hoặc invalidate. Project dùng cả 2: product list qua request, user login qua session.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">10</span>
+  <span class="txt">Sau khi đăng nhập thành công, code set <code>session.setAttribute("loginSuccess", "Đăng nhập thành công!")</code> rồi redirect. Tại sao cần lưu thông báo vào session thay vì request?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Vì dùng <code>response.sendRedirect()</code> — redirect tạo request <strong>mới</strong> từ browser, request cũ (cùng attributes) bị hủy. Chỉ session mới sống sót qua redirect. Đây là pattern <strong>Post/Redirect/Get (PRG)</strong> — submit form → redirect → GET page mới, tránh F5 gửi lại form.</p></div>
+</div>
+
+<div class="sec">Phần 2 — JSP &amp; Java Logic</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">11</span>
+  <span class="txt"><code>"admin".equals(session.getAttribute("role"))</code> — tại sao đặt chuỗi literal ở trước, không viết ngược lại?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Nếu <code>session.getAttribute("role")</code> trả về <code>null</code> (chưa đăng nhập), gọi <code>null.equals("admin")</code> ném <code>NullPointerException</code>. Đặt literal trước: <code>"admin".equals(null)</code> → trả về <code>false</code> an toàn. Gọi là <strong>Yoda condition</strong> — phòng thủ null.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">12</span>
+  <span class="txt"><code>NumberFormat.getCurrencyInstance(new Locale("vi", "VN"))</code> — output của <code>1500000</code> trông như thế nào? Nếu không format thì hiển thị ra sao?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Output: <code>1.500.000 ₫</code>. Dấu chấm phân cách hàng nghìn theo chuẩn Việt Nam, ký hiệu ₫ tự động. Không format: hiển thị <code>1500000.0</code> hoặc <code>1500000</code> — thiếu dấu phân cách, không có ký hiệu tiền tệ, trông rất nghiệp dư.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">13</span>
+  <span class="txt">Tính giá gốc từ giá khuyến mãi: <code>double origPrice = p.getPrice() * 100.0 / (100.0 - p.getDiscount_price())</code> — giải thích công thức này.</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Nếu <code>discount_price = 20</code> (giảm 20%), thì giá hiện tại = giá gốc × 80%. Đảo lại: giá gốc = giá hiện tại × 100 / 80. Code: <code>currentPrice × 100.0 / (100.0 - 20)</code>. Dùng <code>100.0</code> (double) thay <code>100</code> (int) để tránh integer division.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">14</span>
+  <span class="txt"><code>Math.round(origPrice / 1000) * 1000</code> — đoạn này làm gì? Tại sao cần làm tròn đến nghìn?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Làm tròn giá tiền đến đơn vị 1000 đồng. Ví dụ: 1.875.000 → 1.875.000 (đã chẵn). 1.876.543 → 1.877.000. Giá nội thất thường được niêm yết theo mức nghìn — tránh hiện giá lẻ như "1.876.543 ₫" trông không chuyên nghiệp.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">15</span>
+  <span class="txt">Vòng lặp trong JSP: <code>&lt;% for (products p : productList) { %&gt; ... &lt;% } %&gt;</code> — scriptlet <code>&lt;% %&gt;</code> có vấn đề gì? Cách hiện đại hơn là gì?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Scriptlet trộn Java code vào HTML → khó đọc, khó maintain, không tách biệt logic và view. Cách hiện đại: <strong>JSTL (JSP Standard Tag Library)</strong> với <code>&lt;c:forEach items="${products}" var="p"&gt;</code>. Hoặc chuyển sang template engine như Thymeleaf. Tuy nhiên, với project học phạm vi nhỏ, scriptlet vẫn chấp nhận được.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">16</span>
+  <span class="txt"><code>if (productList == null || productList.isEmpty())</code> — tại sao cần kiểm tra cả <code>null</code> VÀ <code>isEmpty()</code>? Chỉ một cái không đủ sao?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Chỉ <code>== null</code>: nếu Servlet set attribute là danh sách rỗng (không phải null) → không vào nhánh if → vòng lặp chạy 0 lần, không hiển thị gì. Chỉ <code>isEmpty()</code>: nếu null → <code>NullPointerException</code>. Kết hợp cả 2 an toàn tuyệt đối.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">17</span>
+  <span class="txt">Trang product_detail lấy sản phẩm bằng <code>request.getAttribute("product")</code>. Nếu <code>p == null</code>, code hiển thị thông báo "Không tìm thấy". Điều này xảy ra trong trường hợp nào?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>(1) User truy cập URL với <code>?id=</code> không tồn tại trong DB. (2) Servlet quên <code>request.setAttribute("product", p)</code>. (3) ID không phải số nguyên → Servlet ném exception trước khi set attribute. (4) Sản phẩm bị xóa trong DB nhưng user vẫn giữ URL cũ.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">18</span>
+  <span class="txt"><code>p.getProduct_name().replace("'", "")</code> trong onclick của button — tại sao phải replace dấu nháy đơn?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Vì onclick dùng: <code>onclick="addToCart(1, 'Ghế Gỗ Sồi')"</code>. Nếu tên có dấu nháy đơn như "Ghế Gỗ Sồi 'Vintage'" → HTML thành: <code>addToCart(1, 'Ghế Gỗ Sồi 'Vintage'')</code> → JavaScript syntax error, hàm không gọi được. Replace trước để thoát ký tự đặc biệt.</p>
+  <div class="hint">Giải pháp đúng hơn: dùng encodeURIComponent hoặc data-attribute thay vì nhúng string vào onclick.</div></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">19</span>
+  <span class="txt">Tính phí ship: <code>double shipping = subtotal >= 500000 ? 0 : 30000</code> — logic này đúng chưa? Nếu subtotal = 499999 thì ship bao nhiêu?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Logic đúng. subtotal = 499999 → 499999 &lt; 500000 → shipping = 30.000đ. subtotal = 500.000 → 500000 >= 500000 → shipping = 0. Threshold chính xác tại 500.000đ. Ngoài ra code cũng hiển thị "Mua thêm N đồng để miễn phí ship" khi shipping > 0.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">20</span>
+  <span class="txt">Tính <code>total = subtotal + shipping</code> trên JSP — nhưng khi user cập nhật số lượng, total hiển thị có tự cập nhật không? Tại sao?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không tự cập nhật. <code>subtotal</code> và <code>total</code> được tính một lần khi JSP render — đây là giá trị tĩnh trong HTML. Khi user thay đổi số lượng qua JS (gọi UpdateCart), code dùng <code>location.reload()</code> sau 800ms để tải lại trang, render lại tổng tiền mới từ server.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">21</span>
+  <span class="txt"><code>java.net.URLEncoder.encode(p.getProduct_name(), "UTF-8")</code> trong thuộc tính <code>onerror</code> của ảnh — tại sao cần encode?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Tên sản phẩm có thể chứa khoảng trắng, dấu tiếng Việt — không hợp lệ trong URL. URLEncoder chuyển "Ghế Gỗ Sồi" → "Gh%E1%BA%BF+G%E1%BB%97+S%E1%BB%93i". placehold.co dùng text trong URL để render chữ lên ảnh placeholder. Không encode → URL sai → ảnh placeholder không load.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">22</span>
+  <span class="txt">Trong JSP, <code>&lt;%= %&gt;</code> và <code>&lt;% out.print() %&gt;</code> có khác nhau không?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Tương đương nhau — <code>&lt;%= expr %&gt;</code> là shorthand của <code>&lt;% out.print(expr); %&gt;</code>. JSP engine biên dịch cả 2 ra cùng một Java code. Tuy nhiên <code>&lt;%= %&gt;</code> gọn hơn, được dùng phổ biến hơn trong code của project.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">23</span>
+  <span class="txt"><code>&lt;title&gt;&lt;%= p != null ? p.getProduct_name() : "Chi tiết sản phẩm" %&gt; - Decor Luxury&lt;/title&gt;</code> — tại sao cần kiểm tra null trong thẻ title?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Thẻ <code>&lt;head&gt;</code> được render <strong>trước</strong> phần body. Nếu p null và gọi <code>p.getProduct_name()</code> trong title → <code>NullPointerException</code> ngay tại đây, trang lỗi 500 trước khi hiển thị được thông báo "Không tìm thấy sản phẩm" ở body.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">24</span>
+  <span class="txt">Sidebar danh mục dùng <code>onclick="location.href='...'"</code> trên <code>&lt;li&gt;</code> thay vì thẻ <code>&lt;a&gt;</code>. Vấn đề accessibility nào phát sinh?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Thẻ <code>&lt;li&gt;</code> không focusable bằng bàn phím Tab, không được screen reader nhận diện là link. User dùng bàn phím hoặc screen reader không thể navigate qua danh mục. Nên dùng <code>&lt;a href="..."&gt;</code> thật sự bên trong <code>&lt;li&gt;</code> để đúng semantic HTML.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">25</span>
+  <span class="txt">Dropdown nav lấy <code>categories</code> từ <code>request.getAttribute("categories")</code>. Ai set attribute này? Có trường hợp nào navCats bị null không?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Servlet (HomeServlet/ProductServlet) set attribute trước khi forward đến JSP. <code>navCats</code> null khi: (1) Servlet quên set. (2) DB truy vấn lỗi, trả về null. (3) Trang được truy cập trực tiếp không qua Servlet (gõ URL .jsp trực tiếp). Trong cart.jsp có fallback hardcode các phòng khi null — home_page.jsp thì không có fallback.</p></div>
+</div>
+
+<div class="sec">Phần 3 — JavaScript Logic</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">26</span>
+  <span class="txt">Hàm <code>showToast(msg, isError = false)</code> — <code>isError = false</code> là gì trong JavaScript? Nếu gọi <code>showToast("Lỗi!")</code> không truyền tham số thứ 2 thì sao?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>isError = false</code> là <strong>default parameter</strong> (ES6+). Nếu gọi không có tham số 2, <code>isError</code> tự động nhận giá trị <code>false</code>. Toast hiện màu xanh (success). Chỉ khi gọi <code>showToast("msg", true)</code> mới hiện màu đỏ (error).</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">27</span>
+  <span class="txt"><code>window.addEventListener('DOMContentLoaded', function() { showToast(...) })</code> — tại sao cần DOMContentLoaded? Nếu gọi <code>showToast()</code> trực tiếp trong <code>&lt;script&gt;</code> không được sao?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>showToast()</code> dùng <code>document.getElementById('toast')</code>. Nếu script chạy trước khi HTML được parse xong, element toast chưa tồn tại → <code>getElementById</code> trả về null → <code>null.classList.add()</code> → TypeError. DOMContentLoaded đảm bảo DOM đã sẵn sàng trước khi chạy.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">28</span>
+  <span class="txt"><code>const urlParams = new URLSearchParams(window.location.search)</code> dùng để làm gì trong code? Cho ví dụ URL kích hoạt điều này.</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Parse query string từ URL. Nếu URL là <code>/home?openModal=login</code>, <code>urlParams.get("openModal")</code> trả về <code>"login"</code> → tự động mở modal đăng nhập. Dùng trong trường hợp user bấm "Thêm vào giỏ" mà chưa đăng nhập → Servlet redirect về home với <code>?openModal=login</code>.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">29</span>
+  <span class="txt">Hàm <code>toggleChat()</code> kiểm tra trạng thái bằng <code>chat.style.opacity === '1'</code> thay vì biến boolean. Rủi ro gì có thể xảy ra?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Nếu <code>opacity</code> chưa được set bằng JS (lần đầu load), <code>chat.style.opacity</code> trả về chuỗi rỗng <code>""</code> dù CSS có set opacity. JS chỉ đọc được <strong>inline style</strong>, không đọc CSS file. → So sánh <code>"" === '1'</code> → false → xử lý như đang đóng, logic có thể sai. Nên dùng <code>classList.toggle('open')</code> thay thế.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">30</span>
+  <span class="txt"><code>localStorage.removeItem("chatHistory")</code> được gọi khi đóng chat. Nhưng project không thấy dùng <code>localStorage.setItem</code> ở đâu — dòng này có tác dụng gì không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không có tác dụng gì — xóa key không tồn tại thì không lỗi nhưng cũng không làm gì. Đây là code thừa (dead code), có thể là tính năng lưu lịch sử chat đã bị bỏ dở giữa chừng. Nên xóa để code gọn.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">31</span>
+  <span class="txt">Hàm <code>updateCartQty(productId, delta)</code> clamp giá trị: <code>if (val < 1) val = 1; if (val > 99) val = 99</code> — tại sao cần clamp trên cả client lẫn server?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Client-side clamp chỉ là UX — ngăn số âm hiển thị trên UI. User vẫn có thể gửi request thẳng với số lượng tùy ý (bypass JS bằng Postman hoặc sửa URL). Server phải validate lại: <code>Math.max(1, Math.min(99, qty))</code>. <strong>Never trust client input.</strong></p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">32</span>
+  <span class="txt">Hàm <code>applyCoupon()</code> hardcode danh sách mã trong JS: <code>const validCodes = { 'GIAM10': 10, ... }</code>. Đây có phải vấn đề bảo mật không?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>Rất nguy hiểm — mọi user có thể xem mã giảm giá bằng cách mở DevTools → Sources → xem JavaScript. Thực tế giảm giá phải validate trên server, không để logic trên client. Hơn nữa, toast "Áp dụng mã thành công" chỉ là thông báo — không thực sự trừ tiền.</p>
+  <div class="hint">Đây là lỗ hổng bảo mật + bug logic nghiêm trọng nhất trong toàn bộ project.</div></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">33</span>
+  <span class="txt">Hàm <code>localReply(msg)</code> dùng <code>.normalize("NFD").replace(/[\u0300-\u036f]/g, "")</code> — đoạn này làm gì?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Xóa dấu tiếng Việt để so sánh không phân biệt dấu. <code>normalize("NFD")</code>: tách ký tự có dấu thành ký tự gốc + combining mark. <code>replace([\u0300-\u036f])</code>: xóa toàn bộ combining marks. "xin chào" → "xin chao". Vậy regex <code>/xin chao|hello/</code> match được cả có dấu và không dấu.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">34</span>
+  <span class="txt">Hàm <code>addMessage()</code> dùng <code>div.innerHTML = formatted</code> để render tin nhắn chat — rủi ro bảo mật gì có thể xảy ra?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p><strong>XSS (Cross-Site Scripting)</strong>. Nếu bot trả về <code>&lt;script&gt;alert('hack')&lt;/script&gt;</code>, <code>innerHTML</code> sẽ thực thi script đó. Cách an toàn: dùng <code>textContent</code> thay <code>innerHTML</code> cho text thuần, hoặc sanitize HTML trước. Code hiện tại chỉ convert markdown cơ bản nhưng không escape HTML tags.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">35</span>
+  <span class="txt">Hàm <code>changeQty(delta)</code> trong product detail — nếu user gõ tay <code>0</code> vào input number thì sao? Code có bảo vệ không?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Input có thuộc tính <code>min="1"</code> ngăn browser UI nhập số < 1. Nhưng <code>changeQty</code> chỉ dùng <code>parseInt(input.value) + delta</code> không check min/max — nếu user bypass min attribute, có thể gửi qty=0 hoặc âm. Cần thêm: <code>if (newVal < 1) newVal = 1;</code>.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">36</span>
+  <span class="txt">Hàm <code>switchModal(closeId, openId)</code> — tại sao không đóng tất cả modal rồi mở cái mới, mà chỉ đóng modal cụ thể?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Project chỉ có 2 modal (login, register) và chúng mutually exclusive — không bao giờ cả 2 cùng mở. Truyền <code>closeId</code> cụ thể đủ dùng. Nếu sau này thêm nhiều modal, nên refactor: <code>document.querySelectorAll('.modal').forEach(m => m.style.display='none')</code> rồi mở cái cần.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">37</span>
+  <span class="txt">Badge giỏ hàng cập nhật client-side: <code>badge.textContent = parseInt(badge.textContent || 0) + 1</code> — vấn đề gì khi user thêm cùng sản phẩm 2 lần?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Giỏ hàng thực tế cộng dồn số lượng sản phẩm đó (qty tăng), không thêm dòng mới — tức chỉ 1 item trong cart nhưng badge có thể tăng 2 lần. Badge count nên phản ánh tổng số <strong>loại sản phẩm</strong> hoặc tổng <strong>số lượng</strong>, nhưng cả 2 đều không đúng khi chỉ cộng +1 mỗi lần click.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">38</span>
+  <span class="txt">Scroll top button: <code>window.addEventListener('scroll', () => { if (window.scrollY > 300) ... })</code> — event listener này có vấn đề hiệu năng không?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Scroll event bắn rất nhiều lần khi user scroll — có thể hàng chục lần/giây. Mỗi lần đều chạy callback. Cách tối ưu: dùng <strong>throttle</strong> (giới hạn tần suất) hoặc <strong>requestAnimationFrame</strong>. Với code đơn giản như này (chỉ add/remove class) thì ảnh hưởng không đáng kể nhưng đây là nguyên tắc cần biết.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">39</span>
+  <span class="txt">Hàm <code>switchTab(tabId)</code> — nếu không tìm thấy element với ID đó thì <code>document.getElementById</code> trả về gì? Code có bị lỗi không?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Trả về <code>null</code>. Sau đó <code>null.classList.remove('active')</code> → <code>TypeError: Cannot read properties of null</code>. Code không có try/catch bảo vệ → lỗi console, tab không switch. Nên thêm: <code>if (panel) panel.classList.add('active');</code></p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">40</span>
+  <span class="txt"><code>let isSending = false</code> được dùng để làm gì trong hàm <code>sendMsg()</code>?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Flag ngăn user gửi nhiều tin nhắn liên tiếp khi đang chờ response (debounce/lock). Khi đang gửi: <code>isSending = true</code>, hàm return sớm nếu bị gọi lại. Sau 1.5s trong <code>finally</code>: <code>isSending = false</code>, mở khóa. Không có cơ chế này, user spam click "Gửi" sẽ flood server với nhiều request.</p></div>
+</div>
+
+<div class="sec">Phần 4 — Fetch API &amp; AJAX</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">41</span>
+  <span class="txt"><code>addToCart()</code> dùng <code>fetch(..., { method: 'GET' })</code> — tại sao thêm vào giỏ lại dùng GET thay vì POST? Có vi phạm HTTP semantics không?</span>
+  <span class="tag t-fetch">Fetch/AJAX</span><span class="arr">▸</span></div>
+  <div class="body"><p>Có vi phạm semantics. GET chỉ dùng để đọc dữ liệu (idempotent). "Thêm vào giỏ" thay đổi trạng thái server → phải dùng POST. Dùng GET có thể bị browser/CDN cache, bị prefetch nhầm bởi trình duyệt, và có thể bị gọi nhiều lần nếu user refresh. Đây là lỗi thiết kế API.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">42</span>
+  <span class="txt">Fetch chain: <code>.then(res => { if (res.ok) {...} else {...} }).catch(() => {...})</code> — <code>res.ok</code> là gì? Khác gì so với <code>.catch()</code>?</span>
+  <span class="tag t-fetch">Fetch/AJAX</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>res.ok</code>: true nếu HTTP status 200-299. Fetch <strong>không reject</strong> với HTTP 4xx/5xx — promise vẫn resolve nhưng <code>res.ok = false</code>. <code>.catch()</code> chỉ bắt lỗi network (mất mạng, DNS fail, CORS block). Cần cả 2: check <code>res.ok</code> cho HTTP error, <code>.catch()</code> cho network error.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">43</span>
+  <span class="txt"><code>UpdateCart</code> trả về JSON, code dùng <code>.then(res => res.json())</code>. Nếu server trả về HTML (trang lỗi 500) thay vì JSON thì <code>res.json()</code> bị sao?</span>
+  <span class="tag t-fetch">Fetch/AJAX</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>res.json()</code> cố parse HTML như JSON → throw <code>SyntaxError: Unexpected token &lt;</code>. Nếu không có <code>.catch()</code>, lỗi không được xử lý. Code trong cart.jsp có <code>.catch(() => { showToast('Đã cập nhật!'); location.reload() })</code> — tức là kể cả lỗi cũng reload, che giấu error thực sự.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">44</span>
+  <span class="txt">Chat gọi: <code>body: "message=" + encodeURIComponent(msg)</code> với header <code>Content-Type: application/x-www-form-urlencoded</code>. Tại sao cần <code>encodeURIComponent</code>?</span>
+  <span class="tag t-fetch">Fetch/AJAX</span><span class="arr">▸</span></div>
+  <div class="body"><p>URL form encoding yêu cầu ký tự đặc biệt phải được encode. Ví dụ: "Sofa & bàn" → nếu không encode, "&" bị hiểu là tách param, server đọc "message=Sofa " và "bàn" là param riêng. <code>encodeURIComponent</code>: "Sofa %26 b%C3%A0n" — server nhận đúng.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">45</span>
+  <span class="txt"><code>setTimeout(() => location.reload(), 800)</code> sau khi update cart — tại sao cần delay 800ms? Reload ngay không được sao?</span>
+  <span class="tag t-fetch">Fetch/AJAX</span><span class="arr">▸</span></div>
+  <div class="body"><p>Để user đọc được toast thông báo "Đã cập nhật số lượng!" trước khi trang reload. Reload ngay lập tức → toast vừa hiện đã mất, UX tệ. 800ms là đủ để user nhận ra feedback. Toast hiện trong 2800ms nhưng chỉ cần 800ms là đủ để user thấy.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">46</span>
+  <span class="txt">Chat dùng <code>fetch</code> gọi <code>/ChatServlet</code> — nếu ChatServlet xử lý chậm (5 giây), UX có bị ảnh hưởng? Code xử lý thế nào?</span>
+  <span class="tag t-fetch">Fetch/AJAX</span><span class="arr">▸</span></div>
+  <div class="body"><p>Trong 5 giây: nút Gửi bị disabled (opacity 0.5), typing indicator hiện ("Đang soạn tin..."), <code>isSending = true</code> ngăn gửi thêm. Đây là UX tốt — user biết đang chờ. Tuy nhiên không có timeout — nếu server treo vô hạn, user phải tự F5. Nên thêm AbortController với timeout.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">47</span>
+  <span class="txt">Hàm <code>quickSend(text)</code> set <code>chatInput.value = text</code> rồi gọi <code>sendMsg()</code> — nhưng quick replies vẫn hiển thị sau khi gửi. Code nào ẩn quick replies?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Code trong <code>minimize()</code>: nếu chatMessages.children.length > 3 thì ẩn quickReplies. Nhưng trong <code>sendMsg()</code> thông thường không có logic ẩn quick replies. Vậy quick replies luôn hiển thị trong suốt cuộc chat — có thể là bug UI, nên ẩn quick replies sau lần chat đầu tiên.</p></div>
+</div>
+
+<div class="card" data-tag="fetch">
+  <div class="head" onclick="tog(this)"><span class="num">48</span>
+  <span class="txt">Markdown converter trong <code>addMessage()</code>: <code>text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, ...)</code> — regex này match pattern gì?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>Match markdown link: <code>[text](url)</code>. <code>[^\]]+</code>: bất kỳ ký tự nào trừ <code>]</code> (phần text). <code>[^)]+</code>: bất kỳ ký tự nào trừ <code>)</code> (phần URL). Thay bằng <code>&lt;a href="url"&gt;text&lt;/a&gt;</code>. Bot có thể trả về link markdown → hiển thị thành link HTML clickable.</p></div>
+</div>
+
+<div class="sec">Phần 5 — MVC &amp; Kiến trúc Servlet</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">49</span>
+  <span class="txt">MVC trong project này gồm những gì? Ai đóng vai M, V, C?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p><strong>M (Model)</strong>: class <code>products</code>, DAO classes — chứa dữ liệu và logic nghiệp vụ. <strong>V (View)</strong>: JSP files (home_page.jsp, cart.jsp...) — chỉ hiển thị, không xử lý logic. <strong>C (Controller)</strong>: Servlet (HomeServlet, AddToCartServlet...) — nhận request, gọi DAO, set attribute, forward đến JSP.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">50</span>
+  <span class="txt">Tại sao không nên để code SQL trực tiếp trong JSP? Project có làm vậy không?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không nên vì vi phạm MVC, JSP trở nên khổng lồ và khó test, logic nghiệp vụ bị trộn vào View. Project không để SQL trong JSP — JSP chỉ nhận data từ <code>request.getAttribute()</code> do Servlet set. Logic DB nằm trong DAO layer. Đây là điểm tốt của kiến trúc.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">51</span>
+  <span class="txt"><code>request.getRequestDispatcher("home_page.jsp").forward(request, response)</code> — forward khác <code>response.sendRedirect()</code> như thế nào? URL trên browser thay đổi không?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p><strong>forward</strong>: server-side, cùng request, URL không đổi trên browser (vẫn hiện /home), nhanh hơn vì không tạo request mới. <strong>redirect</strong>: server gửi 302 về browser, browser tạo request GET mới, URL đổi. Dùng forward khi muốn giữ attributes; redirect sau POST để tránh resubmit.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">52</span>
+  <span class="txt">Cả login và register đều <code>action="login" method="post"</code> — một Servlet xử lý 2 chức năng. Servlet phân biệt bằng cách nào?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p>Button submit có <code>name="action" value="login"</code> hoặc <code>value="register"</code>. Servlet đọc <code>request.getParameter("action")</code>: nếu "login" → xử lý đăng nhập; nếu "register" → xử lý đăng ký; nếu "logout" → hủy session. Đây là Command Pattern đơn giản — một endpoint, nhiều lệnh.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">53</span>
+  <span class="txt">Tại sao Servlet xử lý xong đăng nhập lại <code>sendRedirect</code> về trang chủ thay vì <code>forward</code> đến JSP?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p>Pattern <strong>Post/Redirect/Get</strong>. Nếu forward sau POST, URL vẫn là <code>/login</code>. User F5 → browser hỏi "gửi lại form?" → đăng nhập 2 lần hoặc lỗi. Redirect về GET request mới, F5 chỉ GET trang chủ, không gửi lại form. Bắt buộc dùng redirect sau mọi POST quan trọng.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">54</span>
+  <span class="txt">Servlet <code>AddToCart</code> nhận <code>productId</code> từ query string — làm sao Servlet lấy được product object để lưu vào giỏ? Phải gọi DAO không?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p>Có — phải gọi <code>products_DAO.getProductById(productId)</code> để lấy object đầy đủ (tên, giá, ảnh...). Sau đó lưu vào Map cart trong session. Không thể chỉ lưu productId vì JSP cần render tên, giá, ảnh khi hiển thị giỏ hàng — không muốn query DB mỗi lần hiển thị.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">55</span>
+  <span class="txt">Tại sao URL Servlet dùng <code>${pageContext.request.contextPath}/AddToCart</code> thay vì <code>/AddToCart</code> hay <code>AddToCart</code>?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>contextPath</code> là đường dẫn gốc của web app trên server. Nếu app deploy tại <code>/shop</code>, contextPath = <code>/shop</code>. <code>/AddToCart</code> cứng = <code>http://host/AddToCart</code> (từ root). <code>AddToCart</code> relative = phụ thuộc URL hiện tại. <code>${contextPath}/AddToCart</code> = <code>http://host/shop/AddToCart</code> — đúng mọi trường hợp.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">56</span>
+  <span class="txt">Cart.jsp dùng <code>cart.entrySet()</code> để duyệt giỏ hàng. <code>entrySet()</code> là gì? Tại sao không dùng <code>keySet()</code>?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>entrySet()</code> trả về tập hợp các <code>Map.Entry</code> chứa cả key và value. <code>keySet()</code> chỉ trả về keys — muốn lấy value phải gọi thêm <code>map.get(key)</code>. Dùng <code>entrySet()</code> hiệu quả hơn vì không lookup lại — lấy được cả productId lẫn [product, qty] trong một vòng lặp.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">57</span>
+  <span class="txt">Code có <code>&lt;%@page import="java.util.LinkedHashMap"%&gt;</code> nhưng class thực sự khai báo là <code>Map&lt;Integer, Object[]&gt; cart</code> — tại sao import LinkedHashMap nhưng khai báo kiểu Map?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Program to interface — khai báo biến kiểu <code>Map</code> (interface) nhưng thực tế là <code>LinkedHashMap</code> (implementation). Import LinkedHashMap để có thể viết <code>new LinkedHashMap&lt;&gt;()</code> trong code. Dùng interface giúp dễ đổi implementation sau mà không cần sửa code dùng biến đó.</p></div>
+</div>
+
+<div class="sec">Phần 6 — Bảo mật Web</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">58</span>
+  <span class="txt">Form đăng nhập dùng <code>method="post"</code> — tại sao password không nên gửi bằng <code>method="get"</code>?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>GET: params xuất hiện trong URL → lưu vào browser history, server access log, proxy log, Referer header. Password sẽ lộ ra như: <code>/login?username=admin&password=123456</code>. POST: params trong request body, không hiện trong URL. Password vẫn nên encrypt (HTTPS) nhưng ít nhất không lộ trong URL.</p></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">59</span>
+  <span class="txt">Trang admin kiểm tra quyền bằng <code>"admin".equals(session.getAttribute("role"))</code> trong JSP. Đây có phải cách bảo mật đủ tốt không?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không đủ nếu chỉ kiểm tra trong JSP — JSP kiểm tra ở View layer. User có thể gọi thẳng URL <code>/AdminDashboardServlet</code> bằng cách gõ trực tiếp, bypass JSP. Phải kiểm tra quyền trong <strong>Servlet</strong> (Controller), và tốt hơn là dùng Filter để intercept mọi request đến admin URL.</p>
+  <div class="hint">Filter pattern: implement Filter, check session trong doFilter(), redirect về login nếu không có quyền.</div></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">60</span>
+  <span class="txt">Form tìm kiếm: <code>value="&lt;%= request.getParameter("txtSearch") %&gt;"</code> — đây có thể gây XSS không? Ví dụ user nhập gì?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>Có thể XSS. Nếu user nhập: <code>"&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code>, HTML thành: <code>value=""&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code> → script chạy. Phải escape: <code>value="&lt;%= request.getParameter("txtSearch").replace("&lt;","&lt;").replace("&gt;","&gt;").replace("\"","&amp;quot;") %&gt;"</code> hoặc dùng JSTL <code>&lt;c:out&gt;</code> tự escape.</p>
+  <div class="hint">OWASP: XSS là lỗ hổng phổ biến top 3 trong web application.</div></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">61</span>
+  <span class="txt">User có thể thêm sản phẩm vào giỏ bằng cách gọi URL <code>/AddToCart?productId=999&qty=1000</code> trực tiếp. Điều gì có thể xảy ra?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>(1) productId=999 không tồn tại → DAO trả về null → NullPointerException nếu không xử lý. (2) qty=1000 vượt tồn kho → nếu không validate server-side, giỏ hàng lưu qty=1000. (3) Kết hợp với hàm <code>reduceQuantity</code> có kiểm tra tồn kho → checkout sẽ thất bại. Nhưng vẫn cần validate input sớm.</p></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">62</span>
+  <span class="txt">Form đăng ký có trường <code>type="add"</code> cho địa chỉ — đây là bug gì? Có ảnh hưởng bảo mật không?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>type="add"</code> không tồn tại — browser fallback về <code>type="text"</code>. Không ảnh hưởng bảo mật nhưng là code bẩn. Quan trọng hơn: trường địa chỉ không có validation bất kỳ — user có thể nhập HTML/script vào địa chỉ, lưu xuống DB, khi admin xem có thể bị Stored XSS.</p></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">63</span>
+  <span class="txt">CSRF (Cross-Site Request Forgery) là gì? Form <code>ClearCart</code> có dễ bị tấn công CSRF không?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>CSRF: trang độc hại tạo form giả gửi POST đến <code>/ClearCart</code> khi user đang đăng nhập → giỏ hàng bị xóa mà user không biết. Form hiện tại không có CSRF token → dễ bị tấn công. Phòng chống: thêm hidden input <code>&lt;input type="hidden" name="_csrf" value="${csrfToken}"&gt;</code>, Servlet verify token.</p></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">64</span>
+  <span class="txt">Checkout form: <code>&lt;form action="${pageContext.request.contextPath}/checkout.jsp" method="post"&gt;</code> — action trỏ thẳng vào file JSP. Vấn đề gì?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>Action nên trỏ vào Servlet, không phải JSP. Checkout cần: kiểm tra đăng nhập, validate giỏ hàng, trừ tồn kho, tạo đơn hàng trong DB, gửi email. JSP không nên làm những việc này. Trỏ vào JSP trực tiếp bypass toàn bộ logic nghiệp vụ.</p></div>
+</div>
+
+<div class="sec">Phần 7 — Database &amp; DAO</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">65</span>
+  <span class="txt">DAO (Data Access Object) pattern là gì? Tại sao cần tách DAO ra khỏi Servlet?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p>DAO là lớp trung gian giữa logic nghiệp vụ và database — chỉ chứa các method CRUD (getAll, getById, insert, update, delete). Tách DAO để: (1) Dễ thay đổi DB (MySQL → PostgreSQL) không ảnh hưởng Servlet. (2) Dễ test riêng. (3) Không lặp code connection/query ở nhiều Servlet.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">66</span>
+  <span class="txt">Code dùng <code>PreparedStatement</code> thay vì <code>Statement</code> để query DB. Lợi ích chính là gì?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p>(1) <strong>SQL Injection prevention</strong>: params được truyền riêng, DB treat chúng là data, không phải SQL. (2) <strong>Performance</strong>: câu SQL được compile sẵn, tái sử dụng execution plan. (3) <strong>Type safety</strong>: <code>setInt</code>, <code>setString</code> đảm bảo kiểu dữ liệu đúng. Không dùng PreparedStatement là lỗ hổng bảo mật nghiêm trọng.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">67</span>
+  <span class="txt">Hàm <code>reduceQuantity(productId, qty)</code> dùng <code>WHERE quantity >= ?</code> — tại sao không SELECT kiểm tra trước rồi mới UPDATE?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p>SELECT rồi UPDATE tạo ra khoảng thời gian giữa 2 thao tác — race condition: 2 user cùng mua có thể cùng pass SELECT rồi cả 2 UPDATE → oversell. Gộp điều kiện vào WHERE của UPDATE là atomic operation — DB lock dòng khi UPDATE, tránh race condition. Đây là optimistic locking.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">68</span>
+  <span class="txt"><code>try (Connection con = new dbConnect().getConnect(); PreparedStatement ps = ...)</code> — cú pháp <code>try(...)</code> này gọi là gì? Lợi ích?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p><strong>Try-with-resources</strong> (Java 7+). Tự động gọi <code>close()</code> trên Connection và PreparedStatement khi block try kết thúc, dù có exception hay không. Không cần viết finally để close. Tránh connection leak — nếu quên close connection thủ công, DB sẽ hết pool.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">69</span>
+  <span class="txt">Class <code>dbConnect</code> viết thường thay vì <code>DbConnect</code> — điều này vi phạm convention nào của Java? Ảnh hưởng gì không?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Java convention: tên class dùng PascalCase (UpperCamelCase). <code>dbConnect</code> → nên là <code>DbConnect</code>. Tương tự <code>products</code> → nên là <code>Products</code>, <code>products_DAO</code> → <code>ProductsDAO</code>. Không ảnh hưởng chức năng nhưng vi phạm coding standard, giảm readability, có thể bị điểm trừ khi chấm code style.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">70</span>
+  <span class="txt">Nếu DB bị down khi user thêm vào giỏ hàng, code xử lý thế nào? User thấy gì?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p>DAO bắt <code>Exception e</code>, gọi <code>e.printStackTrace()</code> (log ra console), trả về <code>null</code> hoặc <code>false</code>. Servlet nhận kết quả → redirect về trang với thông báo lỗi (nếu có xử lý). Nếu không xử lý null kỹ → NullPointerException → trang 500 Internal Server Error. Cần catch và hiển thị thông báo thân thiện.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">71</span>
+  <span class="txt">Danh mục sản phẩm lấy từ DB hay hardcode? Dropdown nav và sidebar danh mục có dùng cùng data source không?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p>Lấy từ DB qua Servlet → <code>request.setAttribute("categories", categories)</code>. Cả dropdown nav và sidebar đều dùng <code>request.getAttribute("categories")</code>. Tuy nhiên cart.jsp có <strong>fallback hardcode</strong>: <code>String[] defaultCats = {"Phòng khách", "Phòng ngủ", ...}</code> nếu categories null — home_page.jsp không có fallback này.</p></div>
+</div>
+
+<div class="card" data-tag="db">
+  <div class="head" onclick="tog(this)"><span class="num">72</span>
+  <span class="txt">Tại sao nên dùng <strong>Connection Pool</strong> (như HikariCP, DBCP) thay vì tạo <code>new Connection()</code> mỗi lần query?</span>
+  <span class="tag t-db">Database</span><span class="arr">▸</span></div>
+  <div class="body"><p>Tạo connection là operation tốn kém (TCP handshake, authentication). Mỗi request tạo mới và đóng → chậm, tốn resource. Connection pool duy trì pool sẵn các connection, tái sử dụng. Project hiện tại tạo connection mới mỗi lần (<code>new dbConnect().getConnect()</code>) — không hiệu quả cho production.</p></div>
+</div>
+
+<div class="sec">Phần 8 — Bẫy Logic &amp; Bug thực tế</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">73</span>
+  <span class="txt">Form tìm kiếm dùng <code>method="post"</code> — nếu user tìm kiếm "sofa", rồi gửi link kết quả cho bạn bè, bạn bè có thấy cùng kết quả không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không — POST params không trong URL. URL vẫn là <code>/hienthi</code> không có query string. Bạn bè mở link chỉ thấy trang mặc định (tất cả sản phẩm). Tìm kiếm phải dùng GET để kết quả có URL riêng: <code>/hienthi?txtSearch=sofa</code> — bookmarkable, shareable.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">74</span>
+  <span class="txt">Trong cart.jsp có hàm <code>showToast(msg)</code> KHÔNG có tham số <code>isError</code>. Trong home_page.jsp <code>showToast(msg, isError = false)</code> CÓ tham số. Gọi nhầm hàm có sao không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Hai trang có 2 phiên bản <code>showToast</code> khác nhau! Nếu code từ cart.jsp được copy sang home (hoặc ngược lại) mà không update lời gọi, behavior sẽ khác. Đây là hậu quả của việc duplicate code thay vì extract thành shared script. Nên tách ra file <code>common.js</code> dùng chung.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">75</span>
+  <span class="txt">Trang cart có <code>onerror="this.src='https://placehold.co/80x80/f0f3ea/6b7c4a?text=SP'"</code>. Nếu placehold.co cũng không truy cập được thì sao?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Ảnh onerror gọi lại onerror → vòng lặp vô hạn! Browser sẽ liên tục cố load, gửi request đến placehold.co, thất bại, trigger onerror, lại load... Cần thêm: <code>onerror="this.onerror=null; this.src='placeholder.jpg'"</code> để chỉ trigger 1 lần.</p>
+  <div class="hint">Đây là bug kinh điển của onerror trên thẻ img.</div></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">76</span>
+  <span class="txt">Khi user chưa đăng nhập bấm "Thêm vào giỏ" — code fetch vẫn gọi <code>/AddToCart</code>. Servlet xử lý thế nào? Sản phẩm có vào giỏ không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Phụ thuộc Servlet. Nếu Servlet kiểm tra <code>session.getAttribute("user") == null</code> → redirect về login. Fetch nhận redirect 302 → response body là trang login HTML → <code>res.ok</code> = true (200 sau redirect) → code cập nhật badge và show "Đã thêm" — sai! Nên Servlet trả về JSON lỗi <code>{"error": "not_logged_in"}</code> thay vì redirect.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">77</span>
+  <span class="txt">Cart badge trong nav dùng giá trị từ session: <code>&lt;%= session.getAttribute("cartCount") %&gt;</code>. Sau khi user xóa sản phẩm khỏi giỏ, badge có cập nhật ngay không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Khi xóa sản phẩm (form POST → RemoveFromCart Servlet), trang reload — JSP render lại badge từ session mới. Nhưng nếu cartCount trong session không được update đúng (chỉ update khi add, không update khi remove) → badge sai. Cần Servlet RemoveFromCart cập nhật <code>session.setAttribute("cartCount", newCount)</code>.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">78</span>
+  <span class="txt">Trang cart tính <code>subtotal</code> từ <code>p.getPrice()</code> — nhưng <code>p.getPrice()</code> là giá gốc hay giá sau khuyến mãi? Nếu sản phẩm đang khuyến mãi -20%, subtotal có sai không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Đây là câu hỏi về data model. Nếu <code>getPrice()</code> là giá đã giảm thì subtotal đúng. Nếu là giá gốc thì subtotal sai — user bị tính giá cao hơn thực tế. Cần xem database schema: trường <code>price</code> lưu gì, <code>discount_price</code> là phần trăm hay số tiền giảm. Trong home_page.jsp, giá khuyến mãi tính lại từ giá gốc — gợi ý price là giá đã giảm.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">79</span>
+  <span class="txt">Hai modal (login, register) cùng tồn tại trong DOM nhưng ẩn. Nếu user mở login modal, click backdrop để đóng — có logic xử lý không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không có — code chỉ đóng bằng nút X (<code>closeModal</code>) hoặc chuyển modal. Click backdrop (overlay) không đóng modal. UX tốt thường thêm: <code>window.onclick = function(e) { if(e.target.classList.contains('modal')) closeModal(...) }</code>. Thiếu tính năng này làm user bị kẹt trong modal nếu không thấy nút X.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">80</span>
+  <span class="txt">Code <code>regAddress</code> được lấy từ session trong home_page.jsp nhưng trong phần remove: <code>session.removeAttribute("regPhone")</code> — quên remove <code>regAddress</code>. Bug này gây ra gì?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>regAddress</code> không bị remove khỏi session → lần sau user mở lại trang đăng ký, trường địa chỉ sẽ tự điền giá trị cũ từ lần đăng ký thất bại trước. Trong cart.jsp thì <code>removeAttribute("regAddress")</code> có đầy đủ — inconsistency giữa các trang là bug điển hình khi copy-paste code.</p></div>
+</div>
+
+<div class="sec">Phần 9 — Câu hỏi tổng hợp &amp; nâng cao</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">81</span>
+  <span class="txt">Project có chức năng chatbot gọi <code>/ChatServlet</code>. Theo bạn, ChatServlet có thể gọi API AI ngoài (như OpenAI) không? Cần xử lý gì thêm?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p>Hoàn toàn có thể. ChatServlet gọi HTTP request đến OpenAI API, nhận response, trả text về client. Cần xử lý thêm: (1) API key bảo mật (lưu trong environment variable, không hardcode). (2) Timeout — AI response chậm. (3) Rate limiting — giới hạn user gửi quá nhiều. (4) Context — gửi lịch sử chat để AI hiểu ngữ cảnh.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">82</span>
+  <span class="txt">Nav menu được copy-paste vào tất cả JSP. Nếu cần đổi menu, phải sửa bao nhiêu file? Giải pháp tốt hơn là gì?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p>Ít nhất 4 file (home, cart, product_detail, lienhe). Giải pháp: <strong>JSP Include</strong> — tách nav thành <code>nav.jsp</code>, các trang dùng <code>&lt;%@ include file="nav.jsp" %&gt;</code> (static include, compile time) hoặc <code>&lt;jsp:include page="nav.jsp"/&gt;</code> (dynamic include, runtime). Thay đổi 1 file → áp dụng cho toàn bộ.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">83</span>
+  <span class="txt">Project Java Servlet/JSP — nếu cần chuyển sang Spring Boot thì những thành phần nào tương đương?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p>Servlet → <code>@RestController</code> / <code>@Controller</code>. <code>request.getAttribute</code> → <code>Model model</code> param. JSP → Thymeleaf template. DAO → <code>@Repository</code> + JPA/Hibernate. <code>session.setAttribute</code> → <code>HttpSession session</code> param. web.xml → Spring Boot auto-config. Kiến trúc MVC tương tự, chỉ đổi implementation.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">84</span>
+  <span class="txt">Nếu 1000 user cùng thêm vào giỏ cùng lúc, giỏ hàng lưu trong session — server có vấn đề gì không?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p>RAM Tomcat sẽ phình to — mỗi session chứa Map giỏ hàng với product objects. 1000 user × (giả sử 10 sản phẩm/giỏ × ~1KB/object) = ~10MB. Vấn đề lớn hơn khi scale horizontally: nếu dùng 2 server, session của user A ở server 1 không có trên server 2. Cần Sticky Session hoặc Distributed Session (Redis).</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">85</span>
+  <span class="txt">Tại sao nên dùng HTTPS cho web bán hàng? Project đang dùng HTTP — vấn đề gì?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>HTTP: dữ liệu truyền plaintext — password, thông tin đơn hàng, thẻ tín dụng có thể bị nghe lén (Man-in-the-Middle). HTTPS mã hóa TLS. Với HTTP, JSESSIONID cookie cũng không được bảo vệ — attacker trên cùng mạng có thể hijack session. Google Chrome đánh dấu HTTP là "Not Secure".</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">86</span>
+  <span class="txt">Trang liên hệ (lienhe.jsp) có form gửi tin nhắn nhưng action trỏ về đâu? Dữ liệu có thực sự được lưu không?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Cần xem code lienhe.jsp đầy đủ để xác định chính xác. Dựa trên file zip: lienhe.css có form nhưng action có thể trỏ đến ContactServlet. Nếu ContactServlet không xử lý và lưu DB → dữ liệu mất. Chức năng gửi email cũng cần JavaMail API. Đây là tính năng hay bị để "dở" trong project học.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">87</span>
+  <span class="txt">Phân biệt <code>request.getParameter()</code> và <code>request.getAttribute()</code> — khi nào dùng cái nào?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>getParameter()</code>: lấy data từ HTTP request (form field, query string) — chỉ đọc được String. <code>getAttribute()</code>: lấy object Java được set bằng <code>setAttribute()</code> trong cùng request — có thể là bất kỳ kiểu nào (List, Object...). Servlet set product list bằng <code>setAttribute</code>, JSP đọc bằng <code>getAttribute</code>. User form data dùng <code>getParameter</code>.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">88</span>
+  <span class="txt">Tại sao code dùng <code>try { Integer.parseInt(request.getParameter("productId")) } catch</code> khi lấy productId? Không parse thẳng được sao?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p><code>getParameter()</code> luôn trả về String (hoặc null). <code>parseInt</code> ném <code>NumberFormatException</code> nếu String không phải số (null, rỗng, chữ). User có thể manipulate URL: <code>?productId=abc</code> → exception → 500 error. Try-catch bắt và xử lý gracefully (redirect về 404 thân thiện).</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">89</span>
+  <span class="txt">Nếu project cần thêm tính năng "Đánh giá sản phẩm (rating)", cần thêm gì vào MVC?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p><strong>Model</strong>: class <code>Review</code> (userId, productId, rating, comment, date). <strong>DAO</strong>: <code>ReviewDAO</code> (addReview, getByProductId, getAvgRating). <strong>Servlet</strong>: <code>AddReviewServlet</code> (POST), <code>ProductDetailServlet</code> load thêm reviews. <strong>View</strong>: thêm section đánh giá trong product_detail.jsp, form gửi review, hiển thị list reviews. DB thêm bảng <code>reviews</code>.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">90</span>
+  <span class="txt">Project không có trang <code>404.html</code> hay error page tùy chỉnh. Khi user truy cập URL không tồn tại, thấy gì? Cách thêm error page?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p>Thấy trang lỗi mặc định của Tomcat — xấu và lộ thông tin stack trace. Cấu hình trong <code>web.xml</code>: <code>&lt;error-page&gt;&lt;error-code&gt;404&lt;/error-code&gt;&lt;location&gt;/404.jsp&lt;/location&gt;&lt;/error-page&gt;</code>. Tương tự cho 500. Custom error page ẩn thông tin kỹ thuật và tạo UX nhất quán.</p></div>
+</div>
+
+<div class="sec">Phần 10 — 10 Câu Cuối: Câu hỏi tổng kết</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">91</span>
+  <span class="txt">Vòng lặp tính subtotal: <code>subtotal += p.getPrice() * qty</code> — tại sao dùng <code>double</code> thay vì <code>int</code> hay <code>long</code>?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Giá có thể là decimal (1.500.000,5 đồng — dù hiếm). <code>int</code> max ~2.1 tỷ đủ dùng, nhưng nhân giá × số lượng lớn có thể overflow. <code>long</code> tốt hơn int cho tiền tệ. Thực tế, tiền tệ nên dùng <code>BigDecimal</code> để tránh floating-point precision error (0.1 + 0.2 ≠ 0.3 trong double). Dùng double là đơn giản nhưng không chính xác 100%.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">92</span>
+  <span class="txt">Khi user mở 2 tab trình duyệt cùng lúc và thêm hàng từ cả 2 tab — giỏ hàng có bị conflict không?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Cùng browser = cùng session (cùng JSESSIONID cookie). Mỗi request AddToCart là synchronous — nếu cùng lúc exact có thể race condition ở code Java (Map không thread-safe). Nên dùng <code>synchronized(session) { ... }</code> hoặc <code>ConcurrentHashMap</code> khi modify cart trong session để tránh data corruption.</p></div>
+</div>
+
+<div class="card" data-tag="js">
+  <div class="head" onclick="tog(this)"><span class="num">93</span>
+  <span class="txt">Tại sao không nên để toàn bộ JavaScript inline trong JSP mà nên tách ra file <code>.js</code> riêng?</span>
+  <span class="tag t-js">JavaScript</span><span class="arr">▸</span></div>
+  <div class="body"><p>(1) <strong>Caching</strong>: file .js riêng được browser cache, không tải lại mỗi request. Inline JS tải lại mỗi lần. (2) <strong>Maintainability</strong>: một logic ở một chỗ, không lặp lại ở nhiều JSP. (3) <strong>Separation of concerns</strong>: JS logic tách khỏi HTML. Trường hợp cần JSP variables trong JS (như contextPath) thì vẫn cần inline một phần.</p></div>
+</div>
+
+<div class="card" data-tag="sec">
+  <div class="head" onclick="tog(this)"><span class="num">94</span>
+  <span class="txt">Mật khẩu trong DB được lưu dạng gì? Plain text hay hash? Nếu plain text thì rủi ro gì khi DB bị hack?</span>
+  <span class="tag t-sec">Bảo mật</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không nhìn thấy code hash trong project → có thể lưu plain text. Nếu plain text: DB bị hack → toàn bộ password user lộ ngay. Phải hash với <strong>bcrypt</strong> hoặc <strong>Argon2</strong> — thuật toán một chiều có salt, không thể reverse. MD5/SHA1 không đủ vì dễ rainbow table. Đây là yêu cầu bắt buộc cho mọi ứng dụng thực tế.</p></div>
+</div>
+
+<div class="card" data-tag="mvc">
+  <div class="head" onclick="tog(this)"><span class="num">95</span>
+  <span class="txt">Tên Servlet: <code>AddToCart</code>, <code>RemoveFromCart</code>, <code>ClearCart</code>, <code>UpdateCart</code> — đây là thiết kế URL theo style gì? RESTful không?</span>
+  <span class="tag t-mvc">MVC</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không RESTful — RESTful dùng HTTP method để phân biệt action: <code>POST /cart</code> (add), <code>DELETE /cart/{id}</code> (remove), <code>PUT /cart/{id}</code> (update), <code>DELETE /cart</code> (clear). Project dùng nhiều URL riêng, đều dùng POST/GET — style RPC truyền thống, phổ biến với Servlet nhưng không RESTful.</p></div>
+</div>
+
+<div class="card" data-tag="trap">
+  <div class="head" onclick="tog(this)"><span class="num">96</span>
+  <span class="txt">Giả sử giảng viên hỏi: "Chức năng nào trong project bạn thấy chưa hoàn thiện nhất?" — bạn trả lời gì?</span>
+  <span class="tag t-trap">Bẫy</span><span class="arr">▸</span></div>
+  <div class="body"><p>Trả lời thành thật và phân tích kỹ: (1) Coupon chỉ là UI giả — không thực sự giảm tiền. (2) Checkout trỏ vào JSP, không có Servlet xử lý thanh toán thực. (3) Mật khẩu có thể lưu plain text. (4) Thiếu responsive. (5) Không có validation server-side đầy đủ. Trả lời thẳng thắn + nêu cách sửa sẽ được đánh giá cao hơn che giấu.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">97</span>
+  <span class="txt">Nếu project cần deploy lên internet (VPS/cloud), cần chuẩn bị thêm những gì so với chạy localhost?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p>(1) HTTPS certificate (Let's Encrypt free). (2) Database config production (không dùng localhost). (3) Đổi mật khẩu DB, xóa default credentials. (4) Cấu hình firewall, chỉ mở port 80/443. (5) Log rotation. (6) Backup DB. (7) Sửa lỗi backslash trong CSS path. (8) Env variable cho secrets thay vì hardcode. (9) Error page tùy chỉnh.</p></div>
+</div>
+
+<div class="card" data-tag="java">
+  <div class="head" onclick="tog(this)"><span class="num">98</span>
+  <span class="txt">Class tên <code>products</code> (số nhiều, chữ thường) đại diện cho một sản phẩm — tên đặt có đúng convention không? Nên đặt tên thế nào?</span>
+  <span class="tag t-java">JSP/Java</span><span class="arr">▸</span></div>
+  <div class="body"><p>Không đúng 2 điểm: (1) Class Java dùng PascalCase → phải là <code>Products</code>. (2) Class đại diện 1 object → nên số ít: <code>Product</code>. Vậy tên đúng là <code>Product</code>. Tương tự <code>products_DAO</code> → <code>ProductDAO</code>. Naming convention quan trọng vì code đọc như văn xuôi: <code>Product p = new Product()</code> rõ hơn <code>products p = new products()</code>.</p></div>
+</div>
+
+<div class="card" data-tag="session">
+  <div class="head" onclick="tog(this)"><span class="num">99</span>
+  <span class="txt">Nếu user A và user B đăng nhập cùng server, session của họ có cùng nhau không? Làm sao server biết request nào của ai?</span>
+  <span class="tag t-session">Session</span><span class="arr">▸</span></div>
+  <div class="body"><p>Mỗi user có session riêng biệt, nhận diện qua <code>JSESSIONID</code> cookie khác nhau. Browser A gửi <code>Cookie: JSESSIONID=ABC123</code>, browser B gửi <code>JSESSIONID=XYZ789</code>. Tomcat dùng ID này để lookup SessionMap và trả về đúng session. Session hoàn toàn isolated giữa các user.</p></div>
+</div>
+
+<div class="card" data-tag="arch">
+  <div class="head" onclick="tog(this)"><span class="num">100</span>
+  <span class="txt">Nhìn tổng thể project — nếu được làm lại từ đầu, bạn sẽ thay đổi 3 điều lớn nhất về kiến trúc/logic là gì?</span>
+  <span class="tag t-arch">Kiến trúc</span><span class="arr">▸</span></div>
+  <div class="body"><p><strong>1. Bảo mật</strong>: hash mật khẩu bcrypt, validate input server-side, CSRF token, HTTPS. <strong>2. Kiến trúc</strong>: tách nav/footer thành JSP include, tạo shared JS file, thêm Servlet Filter cho authentication. <strong>3. Data model</strong>: dùng class CartItem thay Object[], lưu giỏ hàng vào DB cho user đăng nhập, validate coupon server-side, hoàn thiện checkout flow thực sự.</p>
+  <div class="hint">Trả lời câu này thuyết phục = biết nhìn nhận điểm yếu và có định hướng cải thiện = ấn tượng tốt nhất với giảng viên.</div></div>
+</div>
+
+</div>
+
+<script>
+let curTag = 'all';
+function tog(h) {
+  const b = h.nextElementSibling;
+  const a = h.querySelector('.arr');
+  const o = b.classList.toggle('open');
+  a.style.transform = o ? 'rotate(90deg)' : '';
+}
+function st(tag, btn) {
+  curTag = tag;
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  fil();
+}
+function fil() {
+  const q = document.getElementById('srch').value.toLowerCase();
+  let n = 0;
+  document.querySelectorAll('.card').forEach(c => {
+    const tm = curTag === 'all' || c.dataset.tag === curTag;
+    const qm = !q || c.textContent.toLowerCase().includes(q);
+    c.classList.toggle('gone', !(tm && qm));
+    if (tm && qm) n++;
+  });
+  document.getElementById('cl').textContent = n + ' câu';
+  document.querySelectorAll('.sec').forEach(s => s.style.display = '');
+}
+</script>
+</body>
+</html>
